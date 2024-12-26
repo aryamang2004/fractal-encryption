@@ -1,0 +1,340 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-cyan: #0FF4C6;
+  --neon-pink: #FF2D55;
+  --dark-bg: #0A0A0A;
+  --grid-color: rgba(15, 244, 198, 0.1);
+  --react-blue: #61dafb;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--dark-bg);
+  background-image: 
+    radial-gradient(circle at 100% 100%, rgba(15, 244, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 0% 0%, rgba(255, 45, 85, 0.1) 0%, transparent 50%);
+  color: var(--neon-cyan);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Enhanced Cyber Grid */
+.cyber-grid {
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: center center;
+  position: relative;
+}
+
+.cyber-grid::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, var(--dark-bg) 100%);
+  pointer-events: none;
+}
+
+/* Enhanced Glass Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(15, 244, 198, 0.1);
+  box-shadow: 
+    0 0 20px rgba(15, 244, 198, 0.1),
+    inset 0 0 20px rgba(15, 244, 198, 0.05);
+  transition: all 0.3s ease;
+}
+
+.glass-effect:hover {
+  border-color: rgba(15, 244, 198, 0.2);
+  box-shadow: 
+    0 0 30px rgba(15, 244, 198, 0.15),
+    inset 0 0 30px rgba(15, 244, 198, 0.1);
+}
+
+/* Enhanced Glow Effects */
+.glow {
+  box-shadow: 
+    0 0 20px rgba(15, 244, 198, 0.2),
+    0 0 40px rgba(15, 244, 198, 0.1),
+    0 0 60px rgba(15, 244, 198, 0.05);
+  animation: pulse 4s infinite;
+}
+
+/* Gradient Text Enhancement */
+.gradient-text {
+  background: linear-gradient(
+    90deg, 
+    var(--neon-cyan), 
+    var(--neon-pink), 
+    var(--neon-cyan)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 8s linear infinite;
+}
+
+/* Input Styling */
+textarea {
+  font-family: 'Space Grotesk', monospace;
+  resize: none;
+  transition: all 0.3s ease;
+}
+
+textarea:focus {
+  box-shadow: 
+    0 0 0 2px rgba(15, 244, 198, 0.2),
+    0 0 20px rgba(15, 244, 198, 0.2);
+}
+
+/* Button Enhancement */
+button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+/* Fragment Animation */
+.fragment {
+  position: absolute;
+  background: rgba(15, 244, 198, 0.1);
+  border: 1px solid var(--neon-cyan);
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  transition: all 0.5s ease;
+  backdrop-filter: blur(4px);
+}
+
+/* Visualization Container */
+.visualization {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+#frequencyCanvas {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 10px rgba(15, 244, 198, 0.3));
+}
+
+/* Animations */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 20px rgba(15, 244, 198, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(15, 244, 198, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(15, 244, 198, 0.2); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .gradient-text {
+    font-size: 2rem;
+  }
+}
+
+/* Loading States */
+.loading {
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+  animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-pink);
+}
+
+/* App Specific Styles with Cyberpunk Theme */
+.App {
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px var(--neon-cyan))
+         drop-shadow(0 0 20px var(--neon-cyan));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: transparent;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--neon-cyan);
+  position: relative;
+}
+
+.App-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, 
+              rgba(15, 244, 198, 0.1) 0%, 
+              transparent 70%);
+  pointer-events: none;
+}
+
+.App-link {
+  color: var(--react-blue);
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.App-link:hover {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.App-link::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: linear-gradient(90deg, 
+              transparent, 
+              var(--neon-cyan), 
+              transparent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.App-link:hover::before {
+  transform: scaleX(1);
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced logo spin with glow effect */
+@keyframes App-logo-spin-glow {
+  0% {
+    transform: rotate(0deg);
+    filter: drop-shadow(0 0 10px var(--neon-cyan));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px var(--neon-cyan))
+           drop-shadow(0 0 30px var(--neon-pink));
+  }
+  100% {
+    transform: rotate(360deg);
+    filter: drop-shadow(0 0 10px var(--neon-cyan));
+  }
+}
+
+/* Apply enhanced animation when not preferring reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin-glow infinite 20s linear;
+  }
+}
+
+/* Add this to your existing CSS */
+.encrypt-button {
+    background-color: #0FF4C6;
+    color: black;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.encrypt-button:hover {
+    opacity: 0.9;
+    box-shadow: 0 0 20px rgba(15, 244, 198, 0.5);
+} 
