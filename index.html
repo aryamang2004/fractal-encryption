@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fractal Encryption Visualization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="cyber-grid min-h-screen font-['Space_Grotesk']">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-5xl font-bold text-center mb-8 gradient-text">Fractal Encryption</h1>
+        
+        <!-- Protocol Explanation Section -->
+        <div class="glass-effect rounded-xl p-8 mb-8 glow">
+            <h2 class="text-2xl font-bold mb-4 gradient-text">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="protocol-step glass-effect p-4 rounded-lg">
+                    <h3 class="text-[#0FF4C6] text-xl mb-2">1. Data Mapping</h3>
+                    <p class="text-gray-300">Data is mapped onto fractal patterns using Mandelbrot set coordinates</p>
+                    <div class="mapping-visual mt-4 h-20"></div>
+                </div>
+                <div class="protocol-step glass-effect p-4 rounded-lg">
+                    <h3 class="text-[#0FF4C6] text-xl mb-2">2. Fractal Iteration</h3>
+                    <p class="text-gray-300">Multiple iterations of fractal transformations create unique patterns</p>
+                    <div class="iteration-visual mt-4 h-20"></div>
+                </div>
+                <div class="protocol-step glass-effect p-4 rounded-lg">
+                    <h3 class="text-[#0FF4C6] text-xl mb-2">3. Pattern Encryption</h3>
+                    <p class="text-gray-300">Final encryption based on fractal coordinates and transformations</p>
+                    <div class="encryption-visual mt-4 h-20"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo Section -->
+        <div class="glass-effect rounded-xl p-8 glow">
+            <h2 class="text-2xl font-bold mb-6 gradient-text">Live Demonstration</h2>
+            <div class="space-y-6">
+                <div class="input-section">
+                    <textarea 
+                        id="inputText" 
+                        placeholder="Enter your secret message to see Fractal Encryption in action..." 
+                        class="w-full h-32 bg-opacity-10 bg-white rounded-lg p-4 text-[#0FF4C6] placeholder-[#0FF4C6]/50 focus:ring-2 focus:ring-[#0FF4C6] focus:outline-none glass-effect"
+                    ></textarea>
+                    <div class="flex gap-4 mt-4">
+                        <div class="parameters flex gap-4">
+                            <input 
+                                type="number" 
+                                id="iterations" 
+                                min="1" 
+                                max="20" 
+                                value="5" 
+                                class="glass-effect p-2 rounded-lg w-32 text-[#0FF4C6]"
+                                placeholder="Iterations"
+                            >
+                            <input 
+                                type="number" 
+                                id="seed" 
+                                min="1" 
+                                max="1000" 
+                                value="42" 
+                                class="glass-effect p-2 rounded-lg w-32 text-[#0FF4C6]"
+                                placeholder="Seed"
+                            >
+                        </div>
+                        <button 
+                            onclick="encrypt()" 
+                            class="px-6 py-3 bg-[#0FF4C6] text-black font-bold rounded-lg hover:opacity-90 transition-all hover:shadow-[0_0_20px_rgba(15,244,198,0.5)]"
+                        >
+                            Encrypt
+                        </button>
+                        <button 
+                            onclick="decrypt()" 
+                            class="px-6 py-3 bg-[#0FF4C6] text-black font-bold rounded-lg hover:opacity-90 transition-all hover:shadow-[0_0_20px_rgba(15,244,198,0.5)]"
+                        >
+                            Decrypt
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fractal Visualization Section -->
+                <div class="visualization-container">
+                    <div class="glass-effect rounded-lg p-4 h-[400px] relative">
+                        <div class="absolute top-2 left-2 text-sm text-[#0FF4C6]">Fractal Pattern</div>
+                        <canvas id="fractalCanvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- Output Section -->
+                <div class="output-section">
+                    <h3 class="text-[#0FF4C6] text-xl font-bold mb-2">Received Message:</h3>
+                    <textarea 
+                        id="outputText" 
+                        readonly 
+                        class="w-full h-32 glass-effect rounded-lg p-4 text-[#0FF4C6]"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Details Section -->
+        <div class="glass-effect rounded-xl p-8 mt-8 glow">
+            <h2 class="text-2xl font-bold mb-4 gradient-text">Technical Specifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-effect p-4 rounded-lg">
+                    <h3 class="text-[#0FF4C6] text-xl mb-2">Security Features</h3>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Mandelbrot set mapping</li>
+                        <li>Multi-iteration encryption</li>
+                        <li>Seed-based randomization</li>
+                        <li>Fractal coordinate transformation</li>
+                    </ul>
+                </div>
+                <div class="glass-effect p-4 rounded-lg">
+                    <h3 class="text-[#0FF4C6] text-xl mb-2">Protocol Metrics</h3>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Fractal depth: 8 levels</li>
+                        <li>Iteration range: 1-20</li>
+                        <li>Seed range: 1-1000</li>
+                        <li>Pattern resolution: 512x512</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="fractal.js"></script>
+</body>
+</html> 
